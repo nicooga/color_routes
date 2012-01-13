@@ -1,7 +1,7 @@
 module ColorRoutes
 
   # Some extensions to String to deal with ANSI colors.
-  class StringANSI
+  module StringANSI
   
     COLORS = {
       :black   => 30,

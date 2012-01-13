@@ -18,7 +18,7 @@ Gem::Specification.new do |s|
   s.require_paths = %w[lib]
 
   s.rdoc_options = ["--charset=UTF-8"]
-  s.extra_rdoc_files = %w[README.md LICENSE tasks]
+  s.extra_rdoc_files = %w[README.md LICENSE]
 
   # = MANIFEST =
   s.files = %w[
@@ -27,6 +27,8 @@ Gem::Specification.new do |s|
     Rakefile
     color_routes.gemspec
     lib/color_routes.rb
+    lib/color_routes/rails/tasks/color_routes.rake
+    lib/color_routes/string_ansi.rb
   ]
   # = MANIFEST =
 end

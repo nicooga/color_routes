@@ -1,5 +1,5 @@
 module ColorRoutes
-  VERSION="0.0.1"
+  VERSION="0.0.2"
 
   module Rails
     class Railtie < ::Rails::Railtie

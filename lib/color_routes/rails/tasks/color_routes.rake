@@ -29,22 +29,24 @@ task :color_routes => :environment do
   route_rows.group_by { |table| table[3][:controller] }.each do |controller, route_table|
     puts((controller ? controller.camelize : "No Specific Controller").color(:red))
 
-    table = Tablizer::Table.new
+    table = Tablizer::Table.new [], :header => true
+
+    table[0, 0] = "Name"
+    table[1, 0] = "Verb"
+    table[2, 0] = "Path"
+    table[3, 0] = "Requirements"
     
-    row = 0
-    route_table.each do |row|
+    route_table.each_with_index do |row, row_index|
       name = row[0]
       verb = row[1].color(:red)
       path = row[2].gsub(/(:[^\(\)\/]+)/) do $1.color(:cyan) end
       path = path.gsub(/([\/\.\(\)])/) do $1.color(:brown) end
-      reqs = "{".color(:blue) + " #{row[3].map { |k, v| "#{k.inspect.color(:magenta)} #{"=>".color(:blue)} #{v.inspect.color(:white)}" }.sort.reverse.join(", ") }" + " }".color(:blue)
-      
-      table[row, 0] = name
-      table[row, 1] = verb
-      table[row, 2] = path
-      table[row, 3] = reqs
-
-      row = row + 1
+      reqs = "{".color(:blue) + " #{row[3].map { |k, v| "#{k.inspect.color(:magenta)} #{"=>".color(:blue)} #{v.inspect.color(:gray)}" }.sort.reverse.join(", ") }" + " }".color(:blue)
+       
+      table[0, row_index+1] = name
+      table[1, row_index+1] = verb
+      table[2, row_index+1] = path
+      table[3, row_index+1] = reqs
     end
 
     puts table

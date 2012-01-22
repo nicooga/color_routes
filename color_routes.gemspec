@@ -21,7 +21,7 @@ Gem::Specification.new do |s|
   s.rdoc_options = ["--charset=UTF-8"]
   s.extra_rdoc_files = %w[README.md LICENSE doc/demo.png]
 
-  s.add_dependency('Tablizer', ["~> 1.0.3"])
+  s.add_dependency('tablizer', ["~> 1.0.2"])
 
   # = MANIFEST =
   s.files = %w[
@@ -32,7 +32,6 @@ Gem::Specification.new do |s|
     doc/demo.png
     lib/color_routes.rb
     lib/color_routes/rails/tasks/color_routes.rake
-    lib/color_routes/string_ansi.rb
   ]
   # = MANIFEST =
 end

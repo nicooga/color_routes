@@ -5,8 +5,8 @@ Gem::Specification.new do |s|
   s.rubygems_version = '1.3.5'
 
   s.name              = 'color_routes'
-  s.version           = '0.0.2'
-  s.date              = '2012-01-22'
+  s.version           = '1.0.0'
+  s.date              = '2012-10-23'
   s.rubyforge_project = 'color_routes'
 
   s.summary     = "Colorize rake routes output for rails."
@@ -19,9 +19,7 @@ Gem::Specification.new do |s|
   s.require_paths = %w[lib]
 
   s.rdoc_options = ["--charset=UTF-8"]
-  s.extra_rdoc_files = %w[README.md LICENSE doc/demo.png]
-
-  s.add_dependency('tablizer', ["~> 1.0.2"])
+  s.extra_rdoc_files = %w[README.md LICENSE doc/demo1.png doc/demo2.png]
 
   # = MANIFEST =
   s.files = %w[
@@ -29,7 +27,8 @@ Gem::Specification.new do |s|
     README.md
     Rakefile
     color_routes.gemspec
-    doc/demo.png
+    doc/demo1.png
+    doc/demo2.png
     lib/color_routes.rb
     lib/color_routes/rails/tasks/color_routes.rake
   ]

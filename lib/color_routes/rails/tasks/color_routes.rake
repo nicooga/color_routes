@@ -1,54 +1,36 @@
-desc 'Print out all defined routes in match order, with names. Target specific controller with CONTROLLER=x.'
+desc 'Pretty version on rails rake routes.'
+
+EMK="\033[1;30m"
+EMR="\033[1;31m"
+EMG="\033[1;32m"
+EMY="\033[1;33m"
+EMB="\033[1;34m"
+EMM="\033[1;35m"
+EMC="\033[1;36m"
+EMW="\033[1;37m"
+NOCOLOR = "\033[0m"
+
 task :color_routes => :environment do
-  require 'tablizer'
   Rails.application.reload_routes!
-  all_routes = Rails.application.routes.routes
+  all_routes = Rails.application.routes.routes.to_a
+  all_routes.reject! {|route| route.verb == nil or route.path.spec.to_s == '/assets'}
 
-  if ENV['CONTROLLER']
-    all_routes = all_routes.select{ |route| route.defaults[:controller] == ENV['CONTROLLER'] }
-  end
+        names_max_width = all_routes.map {|route| route.name.to_s.length}.max
+        verbs_max_width = 6
+        paths_max_width = all_routes.map {|route| route.path.spec.to_s.length}.max
+  controllers_max_width = all_routes.map {|route| route.defaults[:controller].length}.max
+      actions_max_width = all_routes.map {|route| route.defaults[:action].length}.max
 
-  routes = all_routes.collect do |route|
-    reqs = route.requirements.dup
-    reqs[:to] = route.app unless route.app.class.name.to_s =~ /^ActionDispatch::Routing/
-    {:name => route.name.to_s, :verb => route.verb.to_s, :path => route.path, :reqs => reqs}
-  end
-  
-  # Skip the route if it's internal info route
-  routes.reject! { |r| r[:path] =~ %r{/rails/info/properties|^/assets} }
+  all_routes.group_by {|route| route.defaults[:controller]}.each_value do |group|
+    puts EMK + "\nCONTROLLER: " + EMW + group.first.defaults[:controller] + NOCOLOR
+    group.each do |route|
+      name = EMC + route.name.to_s.rjust(names_max_width) + NOCOLOR
+      verb = EMY + route.verb.inspect.gsub(/^.{2}|.{2}$/,"").center(verbs_max_width) + NOCOLOR
+      path = EMR + route.path.spec.to_s.ljust(paths_max_width).gsub(/(\.?:[^\(\)\/]+)/){EMB + $1 + EMR} + NOCOLOR
+      action = EMW + route.defaults[:action].ljust(actions_max_width) + NOCOLOR
 
-  route_rows = routes.map do |r|
-    [
-      r[:name].presence || "-",
-      r[:verb].presence || "-",
-      r[:path].presence || "-",
-      r[:reqs]
-    ]
-  end
-
-  route_rows.group_by { |table| table[3][:controller] }.each do |controller, route_table|
-    puts((controller ? controller.camelize : "No Specific Controller").color(:red))
-
-    table = Tablizer::Table.new [], :header => true
-
-    table[0, 0] = "Name"
-    table[1, 0] = "Verb"
-    table[2, 0] = "Path"
-    table[3, 0] = "Requirements"
-    
-    route_table.each_with_index do |row, row_index|
-      name = row[0]
-      verb = row[1].color(:red)
-      path = row[2].gsub(/(:[^\(\)\/]+)/) do $1.color(:cyan) end
-      path = path.gsub(/([\/\.\(\)])/) do $1.color(:brown) end
-      reqs = "{".color(:blue) + " #{row[3].map { |k, v| "#{k.inspect.color(:magenta)} #{"=>".color(:blue)} #{v.inspect.color(:gray)}" }.sort.reverse.join(", ") }" + " }".color(:blue)
-       
-      table[0, row_index+1] = name
-      table[1, row_index+1] = verb
-      table[2, row_index+1] = path
-      table[3, row_index+1] = reqs
+      puts "|#{name}|#{verb}|#{path}|#{action}" 
     end
-
-    puts table
   end
+
 end

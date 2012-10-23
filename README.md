@@ -3,9 +3,20 @@ ColorRoutes
 
 # DESCRIPTION
 
-ColorRoutes is just a little library bundled with the necessary code to turn the output of the rake routes command from the usable but dull white and black screen to something more vivid and full of nice colors :).
+ColorRoutes is just a little library bundled with the necessary code to turn the output of the rake routes command from the usable but dull white and black screen to something more vivid and, more important, readable.
 
-Have fun with it!
+NOTE: the first version of this Gem doesn't work under Rails 3. v1.0.0 does.
+
+Enjoy!
+
+# INSTALLATION
+
+`gem install color_routes --version '>= 1.0.0'`(for Rails 3) to add this rake task system wide, or...
+```bash
+cd myapp/lib/tasks
+wget https://github.com/downloads/nicooga/color_routes/color_routes.rake
+```
+to have this task on a single rails app.
 
 # DEMO
 

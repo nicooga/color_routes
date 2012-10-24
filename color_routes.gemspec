@@ -5,7 +5,7 @@ Gem::Specification.new do |s|
   s.rubygems_version = '1.3.5'
 
   s.name              = 'color_routes'
-  s.version           = '1.0.0'
+  s.version           = '1.0.1'
   s.date              = '2012-10-23'
   s.rubyforge_project = 'color_routes'
 
@@ -30,7 +30,8 @@ Gem::Specification.new do |s|
     doc/demo1.png
     doc/demo2.png
     lib/color_routes.rb
-    lib/color_routes/rails/tasks/color_routes.rake
+    lib/color_routes/railtie.rb
+    lib/color_routes/tasks/color_routes.rake
   ]
   # = MANIFEST =
 end

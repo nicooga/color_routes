@@ -2,7 +2,6 @@ desc 'Pretty version on rails rake routes.'
 
 EMK="\033[1;30m"
 EMR="\033[1;31m"
-EMG="\033[1;32m"
 EMY="\033[1;33m"
 EMB="\033[1;34m"
 EMM="\033[1;35m"
@@ -28,10 +27,10 @@ task :color_routes => :environment do
     group.each do |route|
       name = EMC + route.name.to_s.rjust(names_max_width) + NOCOLOR
       verb = EMY + route.verb.inspect.gsub(/^.{2}|.{2}$/, "").center(verbs_max_width) + NOCOLOR
-      path = EMR + route.path.spec.to_s.ljust(paths_max_width).gsub(/(\.?:[^\(\)\/]+)/) { EMB + $1 + EMR } + NOCOLOR
+      path = EMR + route.path.spec.to_s.ljust(paths_max_width).gsub(/\.?:\w+/){|s|EMB + s + EMR} + NOCOLOR
       action = EMW + route.defaults[:action].to_s.ljust(actions_max_width) + NOCOLOR
 
-      puts "|#{name}|#{verb}|#{path}|#{action}"
+      puts "#{name} | #{verb} | #{path} | #{action}"
     end
   end
 end

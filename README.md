@@ -14,7 +14,7 @@ Enjoy!
 `gem install color_routes --version '>= 1.0.0'`(for Rails 3) to add this rake task system wide, or...
 ```bash
 cd myapp/lib/tasks
-wget https://github.com/downloads/nicooga/color_routes/color_routes.rake
+wget https://raw.github.com/nicooga/color_routes/master/lib/color_routes/rails/tasks/color_routes.rake
 ```
 to have this task on a single rails app.
 

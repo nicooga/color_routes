@@ -11,8 +11,8 @@ Enjoy!
 
 # INSTALLATION
 ```bash
-cd my_rails_app/lib/tasks
-wget https://raw.github.com/nicooga/color_routes/master/lib/color_routes/rails/tasks/color_routes.rake
+cd my_rails_app
+curl https://raw.github.com/nicooga/color_routes/master/lib/color_routes/rails/tasks/color_routes.rake -o lib/tasks/color_routes.rake
 ```
 to have this task on a single rails app.
 

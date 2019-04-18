@@ -4,7 +4,8 @@ ColorRoutes
 # DEPRECATED
 
 **This is a small project that I carried on when I was just started programming.
-Since then, Rails upgraded to major versions from 3 to 5, internal APIs changed.
+Since then, Rails upgraded a few major versions from 2 to 5, internal APIs changed, and this is probably useless.
+Unless you are a time traveler, or a miserable programmer working on upgrading a Rails 2 app.
 I'll leave this here just for historical purposes, and for my own amusement (and disgust) reading my old code. Wish you a very happy and productive day. Kthxbye**
 
 # DESCRIPTION

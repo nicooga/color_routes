@@ -1,6 +1,12 @@
 ColorRoutes
 ===========
 
+# DEPRECATED
+
+**This is a small project that I carried on when I was just started programming.
+Since then, Rails upgraded to major versions from 3 to 5, internal APIs changed.
+I'll leave this here just for historical purposes, and for my own amusement (and disgust) reading my old code. Wish you a very happy and productive day. Kthxbye**
+
 # DESCRIPTION
 
 ColorRoutes is just a little library bundled with the necessary code to turn the output of the rake routes command from the usable but dull white and black screen to something more vivid and, more important, readable.
